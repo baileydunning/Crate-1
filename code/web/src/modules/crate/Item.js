@@ -59,8 +59,17 @@ class Item extends PureComponent {
       })
   }
 
+  // Add method to get gender from the crate
+  // Don't need to store it anywhere? 
+
+  // getGender(description) {
+  //   const descArray = description.split(' ')
+  //   return descArray[descArray.length - 1]
+  // }
+
   render() {
     const { id, name, description } = this.props.crate
+    // const gender = this.getGender(description)
     const { isLoading } = this.state
 
     return (
