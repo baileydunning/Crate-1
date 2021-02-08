@@ -1,3 +1,4 @@
+// 1 ANNOTATION - Add column migrations for survey?, category
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('products', {
