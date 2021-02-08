@@ -5,6 +5,7 @@ import Profile from '../../modules/user/Profile'
 import Subscriptions from '../../modules/user/Subscriptions'
 
 // User routes
+// Add a route that takes the user to '/user/style_preferences'
 export default {
   login: {
     path: '/user/login',

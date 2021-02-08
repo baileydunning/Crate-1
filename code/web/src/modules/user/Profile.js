@@ -16,6 +16,7 @@ import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
 
 // Component
+// Need to add something in this component that lists the user's style preference
 const Profile = (props) => (
   <div>
     {/* SEO */}

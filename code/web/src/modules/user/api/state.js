@@ -3,6 +3,7 @@ import { isEmpty } from '../../../setup/helpers'
 import { SET_USER, LOGIN_REQUEST, LOGIN_RESPONSE, LOGOUT } from './actions'
 
 // Initial State
+// User will need a style preference attriute set to null at first
 export const userInitialState = {
   error: null,
   isLoading: false,

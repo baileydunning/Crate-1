@@ -28,6 +28,8 @@ class Item extends PureComponent {
     }
   }
 
+  // onClickSubscribe() will need to be updated to reroute the user to the style survey
+  // if the user doesn't have a style preference yet
   onClickSubscribe = (crateId) => {
     this.setState({
       isLoading: true
