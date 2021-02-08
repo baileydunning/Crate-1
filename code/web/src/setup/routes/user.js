@@ -27,4 +27,6 @@ export default {
     component: Subscriptions,
     auth: true
   }
+
+  // add route for style-preferences
 }
