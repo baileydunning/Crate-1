@@ -34,7 +34,7 @@ class Login extends Component {
         password: '',
       }
     }
-
+    // add *style preferences: none* to state
     // Function bindings
   }
 
