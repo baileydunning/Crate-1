@@ -20,6 +20,10 @@ export default (state = userInitialState, action) => {
         details: action.user,
       }
 
+      // add method for SET_USER_STYLE_PREFERENCES
+      // PATCH details object to add styles
+      // dispatched when user submits style form
+
     case LOGIN_REQUEST:
       return {
         ...state,
