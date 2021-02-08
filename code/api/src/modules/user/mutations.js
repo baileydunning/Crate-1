@@ -1,3 +1,4 @@
+// TASK add new method to patch users table with style
 // Imports
 import { GraphQLString, GraphQLInt } from 'graphql'
 

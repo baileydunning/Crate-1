@@ -1,3 +1,5 @@
+// NOTE methods that actually do the work of querying and mutating the products table
+// TASK add new method that returns the items that == true && gender == gender from FE for survey from products table
 // App Imports
 import params from '../../config/params'
 import models from '../../setup/models'

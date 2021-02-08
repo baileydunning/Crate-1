@@ -1,3 +1,4 @@
+// TASK add new data types for style, sub-type, survey
 'use strict'
 
 // Product

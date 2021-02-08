@@ -1,6 +1,6 @@
+// NOTE starts the api server on localhost:8000
 // App Imports
 import { PORT, NODE_ENV } from '../config/env'
-
 // Start server
 export default function (server) {
   console.info('SETUP - Starting server..')

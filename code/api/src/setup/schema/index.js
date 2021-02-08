@@ -1,3 +1,4 @@
+// Creates the main fields: query and mutation
 // Imports
 import { GraphQLSchema } from 'graphql'
 

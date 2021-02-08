@@ -1,3 +1,4 @@
+// NOTE authentication for user login if query is called
 // Imports
 import jwt from 'jsonwebtoken'
 import serverConfig from '../config/server.json'

@@ -1,3 +1,4 @@
+// TASK add new method to return all of the 
 // Imports
 import { GraphQLString, GraphQLInt, GraphQLList } from 'graphql'
 

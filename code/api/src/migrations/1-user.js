@@ -1,3 +1,4 @@
+// NOTE up creates users table with attributes and down drops the table
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('users', {

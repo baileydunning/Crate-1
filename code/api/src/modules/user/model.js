@@ -1,3 +1,4 @@
+// TASK add new data types for style
 'use strict'
 
 // User

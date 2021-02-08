@@ -1,3 +1,5 @@
+// NOTE methods that actually do the work of querying and mutating the users table
+// TASK update method to find user by id that also returns style
 // Imports
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'

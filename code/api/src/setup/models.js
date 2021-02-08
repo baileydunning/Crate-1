@@ -1,3 +1,4 @@
+// NOTE imports models from the database
 // Imports
 import Sequelize from 'sequelize'
 

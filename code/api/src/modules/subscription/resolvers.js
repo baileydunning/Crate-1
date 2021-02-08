@@ -1,3 +1,4 @@
+// NOTE methods that actually do the work of querying and mutating the subscriptions table
 // App Imports
 import models from '../../setup/models'
 

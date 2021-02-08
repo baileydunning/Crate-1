@@ -1,3 +1,4 @@
+// NOTE methods that actually do the work of querying and mutating the crates table
 // App Imports
 import models from '../../setup/models'
 import params from '../../config/params'

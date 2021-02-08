@@ -1,3 +1,4 @@
+// NOTE establishes connection to postgresql DB
 // Imports
 import { Sequelize } from 'sequelize'
 

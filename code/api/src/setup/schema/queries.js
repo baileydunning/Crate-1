@@ -1,3 +1,4 @@
+// NOTE sets up query fields
 // Imports
 import { GraphQLObjectType } from 'graphql'
 
@@ -7,6 +8,7 @@ import * as product from '../../modules/product/query'
 import * as crate from '../../modules/crate/query'
 import * as subscription from '../../modules/subscription/query'
 
+// NOTE sets up tables that can be queried
 // Query
 const query = new GraphQLObjectType({
   name: 'query',

@@ -1,3 +1,5 @@
+// TASK Create migration to add columns to products table: style-int, sub-type-int, survey-boolean
+// NOTE up creates products table with attributes and down drops the table
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('products', {

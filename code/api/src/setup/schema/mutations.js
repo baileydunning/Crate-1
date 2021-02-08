@@ -7,6 +7,7 @@ import * as product from '../../modules/product/mutations'
 import * as crate from '../../modules/crate/mutations'
 import * as subscription from '../../modules/subscription/mutations'
 
+// NOTE sets up mutations that post requests can be made
 // Mutation
 const mutation = new GraphQLObjectType({
   name: 'mutations',

@@ -1,3 +1,5 @@
+// NOTE adds seeds to users table
+// TASK add style column to existing seeds
 'use strict';
 
 const bcrypt = require('bcrypt');

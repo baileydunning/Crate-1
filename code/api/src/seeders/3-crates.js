@@ -1,3 +1,5 @@
+// NOTE adds seeds to crates table
+
 'use strict';
 
 module.exports = {

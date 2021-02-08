@@ -1,3 +1,5 @@
+// NOTE sets up the fields for users query and mutations
+// TASK add new field style
 // Imports
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 

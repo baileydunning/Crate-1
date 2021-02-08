@@ -1,3 +1,5 @@
+// NOTE sets up the fields for products query and mutations
+// TASK add new field style, sub-type, and survey
 // Imports
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 

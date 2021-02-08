@@ -1,3 +1,4 @@
+// NOTE sets up the fields for subscriptions query and mutations
 // Imports
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 

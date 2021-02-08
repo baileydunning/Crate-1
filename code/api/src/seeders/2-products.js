@@ -1,3 +1,5 @@
+// NOTE adds seeds to products table
+// TASK add additional seeds to products table and update 
 'use strict';
 
 const params = require('../config/params');
