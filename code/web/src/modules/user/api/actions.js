@@ -109,6 +109,7 @@ export function logoutUnsetUserLocalStorageAndCookie() {
 }
 
 // Get user gender
+// Does this get called anywhere?
 export function getGenders() {
   return dispatch => {
     return axios.post(routeApi, query({
