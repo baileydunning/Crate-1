@@ -1,3 +1,4 @@
+// 2 ANNOTATIONS
 // Imports
 import { GraphQLString, GraphQLInt } from 'graphql'
 
@@ -6,6 +7,7 @@ import { UserType } from './types'
 import { create, remove } from './resolvers'
 
 // Create
+// 1 Users should be created with a style attribute of null/nil
 export const userSignup = {
   type: UserType,
   args: {
@@ -26,6 +28,8 @@ export const userSignup = {
   },
   resolve: create
 }
+
+// 2 Add Update mutation to change style attribute value
 
 // Remove
 export const userRemove = {

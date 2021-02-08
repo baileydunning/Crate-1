@@ -1,9 +1,11 @@
+// 1 ANNOTATION
 'use strict';
 
 const bcrypt = require('bcrypt');
 const config = require('../config/server.json');
 const params = require('../config/params.json');
 
+// 1 Update existing seeds with style attribute
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('users', [

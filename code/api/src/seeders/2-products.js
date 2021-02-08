@@ -1,7 +1,10 @@
+// 2 ANNOTATIONS
 'use strict';
 
 const params = require('../config/params');
 
+// 1 Add seeds for survey products
+// 2 Update existing seeds with new attributes
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('products', [

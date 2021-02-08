@@ -1,3 +1,4 @@
+// 1 ANNOTATION - Add style attribute migration
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('users', {
