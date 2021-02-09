@@ -1,6 +1,6 @@
 // App Imports
 import { isEmpty } from '../../../setup/helpers'
-import { SET_USER, LOGIN_REQUEST, LOGIN_RESPONSE, LOGOUT } from './actions'
+import { SET_USER, LOGIN_REQUEST, LOGIN_RESPONSE, SET_STYLE, LOGOUT } from './actions'
 
 // Initial State
 export const userInitialState = {
@@ -31,6 +31,13 @@ export default (state = userInitialState, action) => {
       return {
         ...state,
         error: action.error,
+        isLoading: false
+      }
+
+    case SET_STYLE:
+      return {
+        ...state,
+        details: action.user,
         isLoading: false
       }
 

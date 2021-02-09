@@ -14,13 +14,14 @@ import { grey, grey2 } from '../../ui/common/colors'
 // App Imports
 import userRoutes from '../../setup/routes/user'
 import { sampleSurveyData } from './SurveyProducts'
+import { setUserStyle } from './api/actions'
 
 class StyleSurvey extends Component {
   
   constructor(props) {
     super(props)
     this.state = {
-      questionNum: 1,
+      questionNum: 6,
       products: [],
       shirt: null,
       pants: null,
@@ -140,7 +141,11 @@ class StyleSurvey extends Component {
               onClick={() => this.handleNavClick('increase')}
             >→</Button>}
             {this.state.questionNum === 6 && 
-            <Button theme='primary'>SUBMIT</Button>}
+            <Button 
+              theme='primary'
+              onClick={() => setUserStyle(this.props.user, 'sporty')}>
+              SUBMIT
+            </Button>}
           </GridCell>
         </Grid>
       </section>
