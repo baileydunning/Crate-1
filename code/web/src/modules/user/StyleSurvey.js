@@ -143,7 +143,7 @@ class StyleSurvey extends Component {
             {this.state.questionNum === 6 && 
             <Button 
               theme='primary'
-              onClick={() => setUserStyle(this.props.user, 'sporty')}>
+              onClick={() => setUserStyle(this.props.user, this.returnDominantStyle())}>
               SUBMIT
             </Button>}
           </GridCell>
