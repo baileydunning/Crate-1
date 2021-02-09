@@ -136,16 +136,19 @@ class StyleSurvey extends Component {
             <p>Question {this.state.questionNum}/6</p>
           </GridCell>
           <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-            {this.state.questionNum !== 6 && <Button
-              theme='primary'
-              onClick={() => this.handleNavClick('increase')}
-            >→</Button>}
-            {this.state.questionNum === 6 && 
-            <Button 
+            {this.state.questionNum === 6 ? 
+            <Button
               theme='primary'
               onClick={() => setUserStyle(this.props.user, this.returnDominantStyle())}>
               SUBMIT
-            </Button>}
+            </Button>
+            :
+            <Button
+              theme='primary'
+              onClick={() => this.handleNavClick('increase')}>
+              →
+            </Button>
+            }
           </GridCell>
         </Grid>
       </section>
