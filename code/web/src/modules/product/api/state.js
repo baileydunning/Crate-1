@@ -61,13 +61,21 @@ export const products = (state = productsInitialState, action) => {
 
 // Survey Products
 
-export const surveyProducts = (state = productsInitialState, action) => {
+const surveyProductsInitialState = {
+  isLoading: false,
+  error: null,
+  list: [],
+  gender: null
+}
+
+export const surveyProducts = (state = surveyProductsInitialState, action) => {
   switch (action.type) {
     case PRODUCTS_SURVEY_GET_BY_GENDER_REQUEST:
       return {
         ...state,
         isLoading: action.isLoading,
-        error: null
+        error: null,
+        gender: action.gender
       }
 
     case PRODUCTS_SURVEY_GET_BY_GENDER_RESPONSE:

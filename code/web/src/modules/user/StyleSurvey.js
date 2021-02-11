@@ -32,11 +32,11 @@ class StyleSurvey extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({
-      products: sampleSurveyData.data
-    })
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     products: sampleSurveyData.data
+  //   })
+  // }
 
   selectProductsOnDisplay = () => {
     return this.state.products.filter(product => {

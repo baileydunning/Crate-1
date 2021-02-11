@@ -61,6 +61,48 @@ export function getList(isLoading = true, forceRefresh = false) {
   }
 }
 
+// Get list of survey products
+export function getSurveyList(gender, isLoading = true, forceRefresh = false) {
+  // console.log(gender)
+  return dispatch => {
+    dispatch({
+      type: PRODUCTS_SURVEY_GET_BY_GENDER_REQUEST,
+      error: null,
+      isLoading,
+      gender
+    })
+
+    return axios.post(routeApi, query({
+      operation: 'productsSurveyByGender',
+      variables: { gender } ,
+      fields: ['id', 'name', 'slug', 'type', 'gender', 'description', 'image', 'style', 'sub_type', 'createdAt', 'updatedAt']
+    }))
+      .then(response => {
+        if (response.status === 200) {
+          dispatch({
+            type: PRODUCTS_SURVEY_GET_BY_GENDER_RESPONSE,
+            error: null,
+            isLoading: false,
+            list: response.data.data.products
+          })
+        } else {
+          dispatch({
+            type: PRODUCTS_SURVEY_GET_BY_GENDER_FAILURE,
+            error: 'Some error occurred. Please try again.',
+            isLoading: false
+          })
+        }
+      })
+      .catch(error => {
+        dispatch({
+          type: PRODUCTS_SURVEY_GET_BY_GENDER_FAILURE,
+          error: 'Some error occurred. Please try again.',
+          isLoading: false
+        })
+      })
+  }
+}
+
 // Get single product
 export function get(slug, isLoading = true) {
   return dispatch => {
