@@ -78,3 +78,24 @@ export async function remove(parentValue, { id }) {
 export async function getGenders() {
   return Object.values(params.user.gender)
 }
+
+
+// Update user
+export async function update(parentValue, { id, name, email, password, style_preference, role}) {
+  const user = await models.User.findOne({ where: { id } })
+  if (!user) {
+    // User does not exists
+    throw new Error(`We do not have any user registered with that id. Please signup.`)}
+  else {
+    await models.User.update(
+      {
+        name,
+        email,
+        password,
+        style_preference,
+        role
+      },
+      { where: { id } }
+    )
+    return models.User.findOne({ where: { id } })
+  }}
