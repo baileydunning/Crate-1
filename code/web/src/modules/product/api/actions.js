@@ -75,7 +75,7 @@ export function getSurveyList(gender, isLoading = true, forceRefresh = false) {
     return axios.post(routeApi, query({
       operation: 'productsSurveyByGender',
       variables: { gender } ,
-      fields: ['id', 'name', 'slug', 'type', 'gender', 'description', 'image', 'style', 'sub_type', 'createdAt', 'updatedAt']
+      fields: ['id', 'name', 'slug', 'type', 'gender', 'description', 'image', 'style', 'sub_type', 'survey', 'createdAt', 'updatedAt']
     }))
       .then(response => {
         if (response.status === 200) {

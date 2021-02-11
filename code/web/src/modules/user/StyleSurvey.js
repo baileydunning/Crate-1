@@ -15,6 +15,7 @@ import { grey, grey2 } from '../../ui/common/colors'
 import userRoutes from '../../setup/routes/user'
 import { sampleSurveyData } from './SurveyProducts'
 import { setUserStyle } from './api/actions'
+import { getSurveyList } from '../product/api/actions'
 
 class StyleSurvey extends Component {
   
@@ -32,11 +33,11 @@ class StyleSurvey extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     products: sampleSurveyData.data
-  //   })
-  // }
+  componentDidMount() {
+    this.setState({
+      products: sampleSurveyData.data
+    })
+  }
 
   selectProductsOnDisplay = () => {
     return this.state.products.filter(product => {
