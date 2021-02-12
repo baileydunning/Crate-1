@@ -45,17 +45,17 @@ class StyleSurvey extends Component {
   selectProductsOnDisplay = () => {
     return this.state.products.filter(product => {
       if (this.state.questionNum === 1) {
-        return product.category === 'shirt'
+        return product.sub_type === 'Shirt'
       } else if (this.state.questionNum === 2) {
-        return product.category === 'pants'
+        return product.sub_type === 'Pants'
       } else if (this.state.questionNum === 3) {
-        return product.category === 'shoes'
+        return product.sub_type === 'Shoes'
       } else if (this.state.questionNum === 4) {
-        return product.category === 'dress' || product.category === 'vest'
+        return product.sub_type === 'Dress' || product.sub_type === 'Vest'
       } else if (this.state.questionNum === 5) {
-        return product.category === 'hat'
+        return product.sub_type === 'Hat'
       } else if (this.state.questionNum === 6) {
-        return product.category === 'accessories'
+        return product.sub_type === 'Accessories'
       }
     })
   }
@@ -68,14 +68,14 @@ class StyleSurvey extends Component {
           <label key={product.style}>
             <input
               type='radio'
-              name={product.category}
+              name={product.sub_type}
               value={product.style}
               onChange={this.handleRadioClick}
             />
             <img 
-              src={product.imgUrl} 
+              src={product.image}
               alt={product.description}
-              style={{width: '20vw'}} 
+              style={{width: '20vw'}}
             />
           </label>
         )
