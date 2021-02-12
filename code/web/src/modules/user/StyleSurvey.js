@@ -22,7 +22,7 @@ class StyleSurvey extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      questionNum: 6,
+      questionNum: 1,
       products: [],
       shirt: null,
       pants: null,
@@ -33,9 +33,12 @@ class StyleSurvey extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({
-      products: sampleSurveyData.data
+  componentDidMount = async () => {
+    this.props.getSurveyList(1)
+    .then(() => {
+      this.setState({
+        products: this.props.surveyProducts.list
+      })
     })
   }
 
@@ -161,7 +164,8 @@ class StyleSurvey extends Component {
 
 function styleSurveyState(state) {
   return {
-    user: state.user
+    user: state.user,
+    surveyProducts: state.surveyProducts
   }
 }
-export default connect(styleSurveyState)(withRouter(StyleSurvey))
+export default connect(styleSurveyState, { getSurveyList })(withRouter(StyleSurvey))

@@ -4,6 +4,7 @@ import { query, mutation } from 'gql-query-builder'
 
 // App Imports
 import { routeApi } from '../../../setup/routes'
+import userRoutes from '../../../setup/routes/user'
 
 // Actions Types
 export const PRODUCTS_GET_LIST_REQUEST = 'PRODUCTS/GET_LIST_REQUEST'

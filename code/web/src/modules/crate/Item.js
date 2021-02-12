@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withRouter, useHistory } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 // UI Imports
 import Card from '../../ui/card/Card'
@@ -29,14 +29,8 @@ class Item extends PureComponent {
     }
   }
 
-  static fetchData({ store }) {
-    return store.dispatch(getSurveyList(1))
-  }
-
   checkUserStyle = (crateId) => {
     if (this.props.user.details.name) {
-      // console.log(this.props.user.details.name)
-      this.props.getSurveyList(1)
       this.props.history.push(userRoutes.survey.path)
     } else {
       this.onClickSubscribe(crateId)
