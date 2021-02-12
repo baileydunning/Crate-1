@@ -74,7 +74,7 @@ class StyleSurvey extends Component {
             />
             <img 
               src={product.image}
-              alt={product.description}
+              alt={product.name}
               style={{width: '20vw'}}
             />
           </label>
@@ -84,8 +84,9 @@ class StyleSurvey extends Component {
   }
 
   handleRadioClick = (e) => {
+    const key = e.target.name.toLowerCase()
     this.setState({
-      [e.target.name]: e.target.value
+      [key]: e.target.value
     })
   }
 
