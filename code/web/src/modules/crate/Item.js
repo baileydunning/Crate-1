@@ -29,10 +29,14 @@ class Item extends PureComponent {
     }
   }
 
+  static fetchData({ store }) {
+    return store.dispatch(getSurveyList(1))
+  }
+
   checkUserStyle = (crateId) => {
     if (this.props.user.details.name) {
       // console.log(this.props.user.details.name)
-      getSurveyList(1)
+      this.props.getSurveyList(1)
       this.props.history.push(userRoutes.survey.path)
     } else {
       this.onClickSubscribe(crateId)
@@ -113,7 +117,7 @@ Item.propTypes = {
 function itemState(state) {
   return {
     user: state.user,
-    list: state.surveyProducts.list
+    // list: state.surveyProducts.list
   }
 }
 

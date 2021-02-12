@@ -64,8 +64,8 @@ export const products = (state = productsInitialState, action) => {
 const surveyProductsInitialState = {
   isLoading: false,
   error: null,
-  list: [],
-  gender: null
+  gender: null,
+  list: []
 }
 
 export const surveyProducts = (state = surveyProductsInitialState, action) => {
