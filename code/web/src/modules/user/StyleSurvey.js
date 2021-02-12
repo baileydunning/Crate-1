@@ -70,6 +70,7 @@ class StyleSurvey extends Component {
               type='radio'
               name={product.sub_type}
               value={product.style}
+              checked={this.state[product.sub_type.toLowerCase()] === product.style ? true : false}
               onChange={this.handleRadioClick}
             />
             <img 
