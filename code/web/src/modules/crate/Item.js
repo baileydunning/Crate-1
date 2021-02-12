@@ -115,4 +115,4 @@ function itemState(state) {
   }
 }
 
-export default connect(itemState, { create, messageShow, messageHide, getSurveyList })(withRouter(Item))
+export default connect(itemState, { create, messageShow, messageHide })(withRouter(Item))

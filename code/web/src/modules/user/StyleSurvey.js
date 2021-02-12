@@ -85,7 +85,10 @@ class StyleSurvey extends Component {
   }
 
   handleRadioClick = (e) => {
-    const key = e.target.name.toLowerCase()
+    let key = e.target.name.toLowerCase()
+    if (key === 'dress' || key === 'vest') {
+      key = 'dressOrVest'
+    }
     this.setState({
       [key]: e.target.value
     })
