@@ -37,10 +37,13 @@ class StyleSurvey extends Component {
 
   componentDidMount = async () => {
     this.props.getList()
-    this.props.getSurveyList(1)
     .then(() => {
-      this.setState({
-        products: this.props.surveyProducts.list
+      let gender = this.props.subscriptions.list[this.props.subscriptions.list.length - 1].crate.gender
+      this.props.getSurveyList(gender)
+      .then(() => {
+        this.setState({
+          products: this.props.surveyProducts.list
+        })
       })
     })
   }
@@ -182,7 +185,8 @@ class StyleSurvey extends Component {
 function styleSurveyState(state) {
   return {
     user: state.user,
-    surveyProducts: state.surveyProducts
+    surveyProducts: state.surveyProducts,
+    subscriptions: state.subscriptions
   }
 }
 export default connect(styleSurveyState, { getList, create, messageShow, messageHide, getSurveyList, setUserStyle })(withRouter(StyleSurvey))

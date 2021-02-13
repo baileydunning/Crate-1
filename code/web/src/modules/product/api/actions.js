@@ -64,7 +64,6 @@ export function getList(isLoading = true, forceRefresh = false) {
 
 // Get list of survey products
 export function getSurveyList(gender, isLoading = true, forceRefresh = false) {
-  console.log(gender)
   return dispatch => {
     dispatch({
       type: PRODUCTS_SURVEY_GET_BY_GENDER_REQUEST,
