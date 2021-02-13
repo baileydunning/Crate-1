@@ -7,6 +7,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     description: {
       type: DataTypes.TEXT
+    },
+    gender: {
+      type: DataTypes.INTEGER
     }
   })
 
