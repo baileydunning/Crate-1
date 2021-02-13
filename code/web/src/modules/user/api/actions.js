@@ -78,21 +78,9 @@ export function loginSetUserLocalStorageAndCookie(token, user) {
 }
 
 // Set user style preference
-export function setUserStyle(user, newStyle) {
+export function setUserStyle(user, newStyle, isLoading = true) {
   user.details['style_preference'] = newStyle
-  console.log(user)
-  return dispatch => {
-    dispatch({
-      type: SET_STYLE,
-      isLoading
-    })
-
-  return axios.post(routeApi, mutation({
-    operation: 'setUserStyle',
-    variables: user.details,
-    fields: ['id', 'name', 'email', 'role', 'style_preference']
-  }))
-}
+  return { type: SET_STYLE, user }
 }
 
 // Register a user

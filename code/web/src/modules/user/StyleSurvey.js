@@ -64,13 +64,17 @@ class StyleSurvey extends Component {
     const productsOnDisplay = this.selectProductsOnDisplay()
     if (productsOnDisplay) {
       return productsOnDisplay.map(product => {
+        let subType = product.sub_type.toLowerCase()
+        if (product.sub_type === 'Dress' || product.sub_type === 'Vest') {
+          subType = 'dressOrVest'
+        }
         return(
           <label key={product.style}>
             <input
               type='radio'
-              name={product.sub_type}
+              name={subType}
               value={product.style}
-              checked={this.state[product.sub_type.toLowerCase()] === product.style ? true : false}
+              checked={this.state[subType] === product.style ? true : false}
               onChange={this.handleRadioClick}
             />
             <img 
@@ -86,7 +90,7 @@ class StyleSurvey extends Component {
 
   handleRadioClick = (e) => {
     let key = e.target.name.toLowerCase()
-    if (key === 'dress' || key === 'vest') {
+    if (key.includes('dressorvest')) {
       key = 'dressOrVest'
     }
     this.setState({
@@ -112,7 +116,7 @@ class StyleSurvey extends Component {
       return style !== null
     })
     return activeStyles.sort((a, b) => {
-      return activeStyles.filter(style => style === b).length - activeStyles.filter(style => style === a).length
+      return activeStyles.filter(style => style === a).length - activeStyles.filter(style => style === b).length
     }).pop()
   }
 
@@ -148,7 +152,7 @@ class StyleSurvey extends Component {
             {this.state.questionNum === 6 ? 
             <Button
               theme='primary'
-              onClick={() => setUserStyle(this.props.user, this.returnDominantStyle())}>
+              onClick={() => this.props.setUserStyle(this.props.user, this.returnDominantStyle())}>
               SUBMIT
             </Button>
             :
@@ -173,4 +177,4 @@ function styleSurveyState(state) {
     surveyProducts: state.surveyProducts
   }
 }
-export default connect(styleSurveyState, { getSurveyList })(withRouter(StyleSurvey))
+export default connect(styleSurveyState, { getSurveyList, setUserStyle })(withRouter(StyleSurvey))

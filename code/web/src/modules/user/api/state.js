@@ -37,7 +37,7 @@ export default (state = userInitialState, action) => {
     case SET_STYLE:
       return {
         ...state,
-        details: action.user,
+        details: action.user.details,
         isLoading: false
       }
 
