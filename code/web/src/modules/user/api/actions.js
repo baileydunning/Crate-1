@@ -79,10 +79,12 @@ export function loginSetUserLocalStorageAndCookie(token, user) {
 
 // Set user style preference
 export function setUserStyle(user, newStyle, isLoading = true) {
+  user.details.style_preference = newStyle
   return dispatch => {
     dispatch({
       type: SET_STYLE,
-      user
+      user,
+      isLoading
     })
 
     return axios.post(routeApi, mutation({

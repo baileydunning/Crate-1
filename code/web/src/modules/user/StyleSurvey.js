@@ -14,7 +14,7 @@ import { grey, grey2 } from '../../ui/common/colors'
 // App Imports
 import userRoutes from '../../setup/routes/user'
 import { sampleSurveyData } from './SurveyProducts'
-import { setUserStyle } from './api/actions'
+import { login, setUserStyle } from './api/actions'
 import { getSurveyList } from '../product/api/actions'
 import { getList, create } from '../subscription/api/actions'
 import { messageShow, messageHide } from '../common/api/actions'
@@ -117,9 +117,13 @@ class StyleSurvey extends Component {
   }
 
   handleSubmit = () => {
-    console.log(this.props.user)
     this.props.setUserStyle(this.props.user, this.returnDominantStyle())
+    // this.props.login(this.props.user)
     this.props.history.push(userRoutes.subscriptions.path)
+    this.props.messageShow(`Thanks for your submission! Your style is ${this.returnDominantStyle()}`)
+    window.setTimeout(() => {
+      this.props.messageHide()
+    }, 5000)
   }
 
   returnDominantStyle = () => {
@@ -190,4 +194,4 @@ function styleSurveyState(state) {
     subscriptions: state.subscriptions
   }
 }
-export default connect(styleSurveyState, { getList, create, messageShow, messageHide, getSurveyList, setUserStyle })(withRouter(StyleSurvey))
+export default connect(styleSurveyState, { getList, create, messageShow, messageHide, getSurveyList, setUserStyle, login })(withRouter(StyleSurvey))

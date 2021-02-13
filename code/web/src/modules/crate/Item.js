@@ -32,12 +32,12 @@ class Item extends PureComponent {
   }
 
   checkUserStyle = (crateId) => {
-    if (this.props.user.details.name) {
+    if (this.props.user.details) {
       this.onClickSubscribe(crateId)
-      // this.props.getById(crateId)
       this.props.history.push(userRoutes.survey.path)
     } else {
       this.onClickSubscribe(crateId)
+      this.props.history.push(userRoutes.subscriptions.path)
     }
   }
 
