@@ -16,6 +16,8 @@ import userRoutes from '../../setup/routes/user'
 import { sampleSurveyData } from './SurveyProducts'
 import { setUserStyle } from './api/actions'
 import { getSurveyList } from '../product/api/actions'
+import { getList, create } from '../subscription/api/actions'
+import { messageShow, messageHide } from '../common/api/actions'
 
 class StyleSurvey extends Component {
   
@@ -34,6 +36,7 @@ class StyleSurvey extends Component {
   }
 
   componentDidMount = async () => {
+    this.props.getList()
     this.props.getSurveyList(1)
     .then(() => {
       this.setState({
@@ -110,6 +113,11 @@ class StyleSurvey extends Component {
     }
   }
 
+  handleSubmit = () => {
+    this.props.setUserStyle(this.props.user, this.returnDominantStyle())
+    this.props.history.push(userRoutes.subscriptions.path)
+  }
+
   returnDominantStyle = () => {
     const chosenStyles = [this.state.shirt, this.state.pants, this.state.shoes, this.state.accessories, this.state.hat, this.state.dressOrVest]
     const activeStyles = chosenStyles.filter(style => {
@@ -152,7 +160,7 @@ class StyleSurvey extends Component {
             {this.state.questionNum === 6 ? 
             <Button
               theme='primary'
-              onClick={() => this.props.setUserStyle(this.props.user, this.returnDominantStyle())}>
+              onClick={() => this.handleSubmit()}>
               SUBMIT
             </Button>
             :
@@ -177,4 +185,4 @@ function styleSurveyState(state) {
     surveyProducts: state.surveyProducts
   }
 }
-export default connect(styleSurveyState, { getSurveyList, setUserStyle })(withRouter(StyleSurvey))
+export default connect(styleSurveyState, { getList, create, messageShow, messageHide, getSurveyList, setUserStyle })(withRouter(StyleSurvey))

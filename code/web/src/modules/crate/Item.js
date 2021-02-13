@@ -16,6 +16,7 @@ import { APP_URL } from '../../setup/config/env'
 import userRoutes from '../../setup/routes/user'
 import { messageShow, messageHide } from '../common/api/actions'
 import { create } from '../subscription/api/actions'
+import { getById } from './api/actions'
 import { getSurveyList } from '../product/api/actions'
 
 // Component
@@ -25,12 +26,15 @@ class Item extends PureComponent {
     super(props)
 
     this.state = {
-      isLoading: false
+      isLoading: false,
+      crateId: null
     }
   }
 
   checkUserStyle = (crateId) => {
     if (this.props.user.details.name) {
+      this.onClickSubscribe(crateId)
+      // this.props.getById(crateId)
       this.props.history.push(userRoutes.survey.path)
     } else {
       this.onClickSubscribe(crateId)
@@ -51,7 +55,7 @@ class Item extends PureComponent {
         } else {
           this.props.messageShow('Subscribed successfully.')
 
-          this.props.history.push(userRoutes.subscriptions.path)
+          // this.props.history.push(userRoutes.subscriptions.path)
         }
       })
       .catch(error => {
@@ -110,9 +114,8 @@ Item.propTypes = {
 // Component State
 function itemState(state) {
   return {
-    user: state.user,
-    // list: state.surveyProducts.list
+    user: state.user
   }
 }
 
-export default connect(itemState, { create, messageShow, messageHide })(withRouter(Item))
+export default connect(itemState, { create, getById, messageShow, messageHide })(withRouter(Item))

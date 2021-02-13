@@ -122,6 +122,7 @@ export function get(slug, isLoading = true) {
 
 // Create subscription
 export function create(variables) {
+  console.log(variables)
   return dispatch => {
     return axios.post(routeApi, mutation({
       operation: 'subscriptionCreate',
