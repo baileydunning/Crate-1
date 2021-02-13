@@ -31,7 +31,7 @@ class Item extends PureComponent {
   }
 
   checkUserStyle = (crateId) => {
-    if (this.props.user.details) {
+    if (!this.props.user.details.style_preference) {
       this.onClickSubscribe(crateId)
       this.props.history.push(userRoutes.survey.path)
     } else {
