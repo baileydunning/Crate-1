@@ -37,7 +37,7 @@ export function login(userCredentials, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role, style_preference}', 'token']
+      fields: ['user {id, name, email, role, style_preference}', 'token']
     }))
       .then(response => {
         let error = ''
@@ -80,7 +80,23 @@ export function loginSetUserLocalStorageAndCookie(token, user) {
 // Set user style preference
 export function setUserStyle(user, newStyle, isLoading = true) {
   user.details['style_preference'] = newStyle
-  return { type: SET_STYLE, user }
+  // return { type: SET_STYLE, user }
+  console.log(user)
+  return dispatch => {
+    dispatch({
+      type: SET_STYLE,
+      user
+    })
+
+    return axios.post(routeApi, mutation({
+      operation: 'userUpdate',
+      variables: { 
+        id: user.details.id,
+        style_preference: newStyle
+      },
+      fields: ['id', 'name', 'role', 'email', 'style_preference']
+    }))
+  }
 }
 
 // Register a user

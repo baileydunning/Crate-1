@@ -117,6 +117,7 @@ class StyleSurvey extends Component {
   }
 
   handleSubmit = () => {
+    console.log(this.props.user)
     this.props.setUserStyle(this.props.user, this.returnDominantStyle())
     this.props.history.push(userRoutes.subscriptions.path)
   }
