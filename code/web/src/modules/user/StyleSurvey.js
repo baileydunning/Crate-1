@@ -13,7 +13,6 @@ import { grey, grey2 } from '../../ui/common/colors'
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
-import { sampleSurveyData } from './SurveyProducts'
 import { login, setUserStyle } from './api/actions'
 import { getSurveyList } from '../product/api/actions'
 import { getList, create } from '../subscription/api/actions'
@@ -118,7 +117,6 @@ class StyleSurvey extends Component {
 
   handleSubmit = () => {
     this.props.setUserStyle(this.props.user, this.returnDominantStyle())
-    // this.props.login(this.props.user)
     this.props.history.push(userRoutes.subscriptions.path)
     this.props.messageShow(`Thanks for your submission! Your style is ${this.returnDominantStyle()}`)
     window.setTimeout(() => {
