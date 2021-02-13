@@ -185,8 +185,8 @@ class StyleSurvey extends Component {
 
 StyleSurvey.propTypes = {
   user: PropTypes.object.isRequired,
-  surveyProducts: PropTypes.array.isRequired,
-  subscriptions: PropTypes.array.isRequired,
+  surveyProducts: PropTypes.object.isRequired,
+  subscriptions: PropTypes.object.isRequired,
   getList: PropTypes.func.isRequired,
   getSurveyList: PropTypes.func.isRequired,
   setUserStyle: PropTypes.func.isRequired,
