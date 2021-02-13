@@ -27,7 +27,7 @@ export function getList(orderBy = 'DESC', isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'crates',
       variables: { orderBy },
-      fields: ['id', 'name', 'description', 'createdAt', 'updatedAt']
+      fields: ['id', 'name', 'description', 'gender', 'createdAt', 'updatedAt']
     }))
       .then(response => {
         if (response.status === 200) {
@@ -62,7 +62,7 @@ export function get(slug, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'crate',
       variables: { slug },
-      fields: ['id', 'name', 'slug', 'description', 'image', 'createdAt']
+      fields: ['id', 'name', 'slug', 'gender', 'description', 'image', 'createdAt']
     }))
       .then(response => {
         dispatch({
@@ -88,7 +88,7 @@ export function getById(crateId) {
     return axios.post(routeApi, query({
       operation: 'crateById',
       variables: { crateId },
-      fields: ['id', 'name', 'description']
+      fields: ['id', 'name', 'gender', 'description']
     }))
   }
 }

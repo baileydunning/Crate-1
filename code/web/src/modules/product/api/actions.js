@@ -4,6 +4,7 @@ import { query, mutation } from 'gql-query-builder'
 
 // App Imports
 import { routeApi } from '../../../setup/routes'
+import userRoutes from '../../../setup/routes/user'
 
 // Actions Types
 export const PRODUCTS_GET_LIST_REQUEST = 'PRODUCTS/GET_LIST_REQUEST'
@@ -16,6 +17,9 @@ export const PRODUCTS_GET_FAILURE = 'PRODUCTS/GET_FAILURE'
 export const PRODUCTS_GET_RELATED_LIST_REQUEST = 'PRODUCTS/GET_RELATED_LIST_REQUEST'
 export const PRODUCTS_GET_RELATED_LIST_RESPONSE = 'PRODUCTS/GET_RELATED_LIST_RESPONSE'
 export const PRODUCTS_GET_RELATED_LIST_FAILURE = 'PRODUCTS/GET_RELATED_LIST_FAILURE'
+export const PRODUCTS_SURVEY_GET_BY_GENDER_REQUEST = 'PRODUCTS/PRODUCTS_SURVEY_GET_BY_GENDER_REQUEST'
+export const PRODUCTS_SURVEY_GET_BY_GENDER_RESPONSE = 'PRODUCTS/PRODUCTS_SURVEY_GET_BY_GENDER_RESPONSE'
+export const PRODUCTS_SURVEY_GET_BY_GENDER_FAILURE = 'PRODUCTS/PRODUCTS_SURVEY_GET_BY_GENDER_FAILURE'
 
 // Actions
 
@@ -51,6 +55,47 @@ export function getList(isLoading = true, forceRefresh = false) {
       .catch(error => {
         dispatch({
           type: PRODUCTS_GET_LIST_FAILURE,
+          error: 'Some error occurred. Please try again.',
+          isLoading: false
+        })
+      })
+  }
+}
+
+// Get list of survey products
+export function getSurveyList(gender, isLoading = true, forceRefresh = false) {
+  return dispatch => {
+    dispatch({
+      type: PRODUCTS_SURVEY_GET_BY_GENDER_REQUEST,
+      error: null,
+      isLoading,
+      gender
+    })
+
+    return axios.post(routeApi, query({
+      operation: 'productsSurveyByGender',
+      variables: { gender } ,
+      fields: ['id', 'name', 'slug', 'type', 'gender', 'description', 'image', 'style', 'sub_type', 'survey', 'createdAt', 'updatedAt']
+    }))
+      .then(response => {
+        if (response.status === 200) {
+          dispatch({
+            type: PRODUCTS_SURVEY_GET_BY_GENDER_RESPONSE,
+            error: null,
+            isLoading: false,
+            list: response.data.data.productsSurveyByGender
+          })
+        } else {
+          dispatch({
+            type: PRODUCTS_SURVEY_GET_BY_GENDER_FAILURE,
+            error: 'Some error occurred. Please try again.',
+            isLoading: false
+          })
+        }
+      })
+      .catch(error => {
+        dispatch({
+          type: PRODUCTS_SURVEY_GET_BY_GENDER_FAILURE,
           error: 'Some error occurred. Please try again.',
           isLoading: false
         })

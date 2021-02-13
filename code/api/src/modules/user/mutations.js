@@ -68,8 +68,8 @@ export const userUpdate = {
     },
 
     role: {
-      name: 'password',
-      type: GraphQLInt
+      name: 'role',
+      type: GraphQLString
     }
   },
   resolve: update

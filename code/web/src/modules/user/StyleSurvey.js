@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 // UI Imports
 import { Grid, GridCell } from '../../ui/grid'
@@ -13,7 +13,10 @@ import { grey, grey2 } from '../../ui/common/colors'
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
-import { sampleSurveyData } from './SurveyProducts'
+import { login, setUserStyle } from './api/actions'
+import { getSurveyList } from '../product/api/actions'
+import { getList, create } from '../subscription/api/actions'
+import { messageShow, messageHide } from '../common/api/actions'
 
 class StyleSurvey extends Component {
   
@@ -31,26 +34,33 @@ class StyleSurvey extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({
-      products: sampleSurveyData.data
+  componentDidMount = async () => {
+    this.props.getList()
+    .then(() => {
+      let gender = this.props.subscriptions.list[this.props.subscriptions.list.length - 1].crate.gender
+      this.props.getSurveyList(gender)
+      .then(() => {
+        this.setState({
+          products: this.props.surveyProducts.list
+        })
+      })
     })
   }
 
   selectProductsOnDisplay = () => {
     return this.state.products.filter(product => {
       if (this.state.questionNum === 1) {
-        return product.category === 'shirt'
+        return product.sub_type === 'Shirt'
       } else if (this.state.questionNum === 2) {
-        return product.category === 'pants'
+        return product.sub_type === 'Pants'
       } else if (this.state.questionNum === 3) {
-        return product.category === 'shoes'
+        return product.sub_type === 'Shoes'
       } else if (this.state.questionNum === 4) {
-        return product.category === 'dress' || product.category === 'vest'
+        return product.sub_type === 'Dress' || product.sub_type === 'Vest'
       } else if (this.state.questionNum === 5) {
-        return product.category === 'hat'
+        return product.sub_type === 'Hat'
       } else if (this.state.questionNum === 6) {
-        return product.category === 'accessories'
+        return product.sub_type === 'Accessories'
       }
     })
   }
@@ -59,18 +69,23 @@ class StyleSurvey extends Component {
     const productsOnDisplay = this.selectProductsOnDisplay()
     if (productsOnDisplay) {
       return productsOnDisplay.map(product => {
+        let subType = product.sub_type.toLowerCase()
+        if (product.sub_type === 'Dress' || product.sub_type === 'Vest') {
+          subType = 'dressOrVest'
+        }
         return(
           <label key={product.style}>
             <input
               type='radio'
-              name={product.category}
+              name={subType}
               value={product.style}
+              checked={this.state[subType] === product.style ? true : false}
               onChange={this.handleRadioClick}
             />
             <img 
-              src={product.imgUrl} 
-              alt={product.description}
-              style={{width: '20vw'}} 
+              src={product.image}
+              alt={product.name}
+              style={{width: '20vw'}}
             />
           </label>
         )
@@ -79,8 +94,12 @@ class StyleSurvey extends Component {
   }
 
   handleRadioClick = (e) => {
+    let key = e.target.name.toLowerCase()
+    if (key.includes('dressorvest')) {
+      key = 'dressOrVest'
+    }
     this.setState({
-      [e.target.name]: e.target.value
+      [key]: e.target.value
     })
   }
 
@@ -96,13 +115,22 @@ class StyleSurvey extends Component {
     }
   }
 
+  handleSubmit = () => {
+    this.props.setUserStyle(this.props.user, this.returnDominantStyle())
+    this.props.history.push(userRoutes.subscriptions.path)
+    this.props.messageShow(`Thanks for your submission! Your style is ${this.returnDominantStyle()}`)
+    window.setTimeout(() => {
+      this.props.messageHide()
+    }, 5000)
+  }
+
   returnDominantStyle = () => {
     const chosenStyles = [this.state.shirt, this.state.pants, this.state.shoes, this.state.accessories, this.state.hat, this.state.dressOrVest]
     const activeStyles = chosenStyles.filter(style => {
       return style !== null
     })
     return activeStyles.sort((a, b) => {
-      return activeStyles.filter(style => style === b).length - activeStyles.filter(style => style === a).length
+      return activeStyles.filter(style => style === a).length - activeStyles.filter(style => style === b).length
     }).pop()
   }
 
@@ -135,24 +163,43 @@ class StyleSurvey extends Component {
             <p>Question {this.state.questionNum}/6</p>
           </GridCell>
           <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-            {this.state.questionNum !== 6 && <Button
+            {this.state.questionNum === 6 ? 
+            <Button
               theme='primary'
-              onClick={() => this.handleNavClick('increase')}
-            >→</Button>}
-            {this.state.questionNum === 6 && 
-            <Button theme='primary'>SUBMIT</Button>}
+              onClick={() => this.handleSubmit()}>
+              SUBMIT
+            </Button>
+            :
+            <Button
+              theme='primary'
+              onClick={() => this.handleNavClick('increase')}>
+              →
+            </Button>
+            }
           </GridCell>
         </Grid>
       </section>
     )
   }
+}
 
-
+StyleSurvey.propTypes = {
+  user: PropTypes.object.isRequired,
+  surveyProducts: PropTypes.object.isRequired,
+  subscriptions: PropTypes.object.isRequired,
+  getList: PropTypes.func.isRequired,
+  getSurveyList: PropTypes.func.isRequired,
+  setUserStyle: PropTypes.func.isRequired,
+  create: PropTypes.func.isRequired,
+  messageShow: PropTypes.func.isRequired,
+  messageHide: PropTypes.func.isRequired
 }
 
 function styleSurveyState(state) {
   return {
-    user: state.user
+    user: state.user,
+    surveyProducts: state.surveyProducts,
+    subscriptions: state.subscriptions
   }
 }
-export default connect(styleSurveyState)(withRouter(StyleSurvey))
+export default connect(styleSurveyState, { getList, create, messageShow, messageHide, getSurveyList, setUserStyle })(withRouter(StyleSurvey))

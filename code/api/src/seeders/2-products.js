@@ -1,7 +1,5 @@
 'use strict';
-
 const params = require('../config/params');
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('products', [
@@ -115,7 +113,7 @@ module.exports = {
         description: 'A pink collared dress',
         type: params.product.types.cloth.id,
         gender: params.user.gender.female.id,
-        image: 'https://images-na.ssl-images-amazon.com/images/I/51K3lh1E69L._AC_UX385_.jpg',
+        image: 'https://m.media-amazon.com/images/I/61mmXZKY1vL._SR500,500_.jpg',
         style: 'Preppy',
         sub_type: 'Dress',
         survey: true,
@@ -284,7 +282,7 @@ module.exports = {
         description: 'Let the world know you do not answer to the man',
         type: params.product.types.cloth.id,
         gender: params.user.gender.male.id,
-        image: 'https://i.pinimg.com/originals/1e/24/f6/1e24f643c0e5cbeb58477ce3a8ebef7b.jpg',
+        image: 'https://i.pinimg.com/originals/f8/41/c4/f841c41592390c2fe92858a85145dea2.jpg',
         style: 'Bohemian',
         sub_type: 'Vest',
         survey: true,
@@ -331,12 +329,12 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        name: 'Flower Shoes',
-        slug: 'flower-shoes',
+        name: 'Pom-pom Shoes',
+        slug: 'pom-pom-shoes',
         description: 'Floral footwear.',
         type: params.product.types.accessory.id,
         gender: params.user.gender.female.id,
-        image: 'https://cdn.shopify.com/s/files/1/0404/6572/7656/products/product-image-1064271036_2000x.jpg?v=1593573736',
+        image: 'https://lh3.googleusercontent.com/proxy/Oc4eHN5TCS7ppv1WF13GPMC-_JI1q6A0iNEfssGovYA9Eh9yUnQqfuZJ6-EbGrGp7AJa28jzDcZLtbQqYLsa5qFfMlfYEWJ8PV3FoNUuG4iWIVUBs_eUZlerV36LxOMoCh4',
         style: 'Bohemian',
         sub_type: 'Shoes',
         survey: true,
@@ -426,7 +424,7 @@ module.exports = {
         slug: 'beige-plaid-pants',
         description: 'So beige, and yet so plaid.',
         type: params.product.types.cloth.id,
-        gender: params.user.gender.male.id,
+        gender: params.user.gender.female.id,
         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5vtv84WUKNCVhr53pcHso0g-6gnj65pUpGl1Usk8gufGrylpvEKDtiuqYL_hpiK2EYD7WMyl1ww&usqp=CAc',
         style: 'Preppy',
         sub_type: 'Pants',
@@ -440,7 +438,7 @@ module.exports = {
         description: 'Beyond words.',
         type: params.product.types.cloth.id,
         gender: params.user.gender.female.id,
-        image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fmyjetset.org%2Fproducts%2Fchleisure-10-colors-bohemian-pants-women-high-waist-harem-pants-plus-size-loose-print-bloomers-trousers-women&psig=AOvVaw0WqsceClIkDnJX1roY1ZEi&ust=1612391346719000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiFiP2fzO4CFQAAAAAdAAAAABAH',
+        image: 'https://images-na.ssl-images-amazon.com/images/I/81-gTPk1n2L._AC_UY445_.jpg',
         style: 'Bohemian',
         sub_type: 'Pants',
         survey: true,
@@ -505,7 +503,7 @@ module.exports = {
         description: 'Not just for gangsters anymore.',
         type: params.product.types.cloth.id,
         gender: params.user.gender.male.id,
-        image: 'https://harempants.imgix.net/s/files/1/0754/0497/products/RYGPH02-Black-20_grande.jpg?v=1564392650&q=50',
+        image: 'https://ae01.alicdn.com/kf/HTB1IkobXOjrK1RjSsplq6xHmVXaw/Aimpact-Sporty-Pants-for-Men-Lightweight-Training-Jogger-Bodybuilding-Running-Trousers-Fitness-Muscle-Active-Track-Sweatpants.jpg',
         style: 'Sporty',
         sub_type: 'Pants',
         survey: true,
@@ -735,7 +733,6 @@ module.exports = {
       }
     ])
   },
-
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('products', null, {});
   }

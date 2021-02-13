@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withRouter, useHistory } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 // UI Imports
 import Card from '../../ui/card/Card'
@@ -16,6 +16,7 @@ import { APP_URL } from '../../setup/config/env'
 import userRoutes from '../../setup/routes/user'
 import { messageShow, messageHide } from '../common/api/actions'
 import { create } from '../subscription/api/actions'
+import { getById } from './api/actions'
 
 // Component
 class Item extends PureComponent {
@@ -24,15 +25,18 @@ class Item extends PureComponent {
     super(props)
 
     this.state = {
-      isLoading: false
+      isLoading: false,
+      crateId: null
     }
   }
 
   checkUserStyle = (crateId) => {
-    if (this.props.user.details.name) {
+    if (!this.props.user.details.style_preference) {
+      this.onClickSubscribe(crateId)
       this.props.history.push(userRoutes.survey.path)
     } else {
       this.onClickSubscribe(crateId)
+      this.props.history.push(userRoutes.subscriptions.path)
     }
   }
 
@@ -49,8 +53,6 @@ class Item extends PureComponent {
           this.props.messageShow(response.data.errors[0].message)
         } else {
           this.props.messageShow('Subscribed successfully.')
-
-          this.props.history.push(userRoutes.subscriptions.path)
         }
       })
       .catch(error => {
@@ -113,4 +115,4 @@ function itemState(state) {
   }
 }
 
-export default connect(itemState, { create, messageShow, messageHide })(withRouter(Item))
+export default connect(itemState, { create, getById, messageShow, messageHide })(withRouter(Item))

@@ -10,6 +10,7 @@ import { routeApi } from '../../../setup/routes'
 export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
+export const SET_STYLE = 'AUTH/SET_STYLE'
 export const LOGOUT = 'AUTH/LOGOUT'
 
 // Actions
@@ -36,7 +37,7 @@ export function login(userCredentials, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role}', 'token']
+      fields: ['user {id, name, email, role, style_preference}', 'token']
     }))
       .then(response => {
         let error = ''
@@ -74,6 +75,27 @@ export function loginSetUserLocalStorageAndCookie(token, user) {
 
   // Set cookie for SSR
   cookie.set('auth', { token, user }, { path: '/' })
+}
+
+// Set user style preference
+export function setUserStyle(user, newStyle, isLoading = true) {
+  user.details.style_preference = newStyle
+  return dispatch => {
+    dispatch({
+      type: SET_STYLE,
+      user,
+      isLoading
+    })
+
+    return axios.post(routeApi, mutation({
+      operation: 'userUpdate',
+      variables: { 
+        id: user.details.id,
+        style_preference: newStyle
+      },
+      fields: ['id', 'name', 'role', 'email', 'style_preference']
+    }))
+  }
 }
 
 // Register a user

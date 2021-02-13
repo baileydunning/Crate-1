@@ -11,7 +11,10 @@ import {
   PRODUCTS_GET_FAILURE,
   PRODUCTS_GET_RELATED_LIST_REQUEST,
   PRODUCTS_GET_RELATED_LIST_RESPONSE,
-  PRODUCTS_GET_RELATED_LIST_FAILURE
+  PRODUCTS_GET_RELATED_LIST_FAILURE,
+  PRODUCTS_SURVEY_GET_BY_GENDER_REQUEST,
+  PRODUCTS_SURVEY_GET_BY_GENDER_RESPONSE,
+  PRODUCTS_SURVEY_GET_BY_GENDER_FAILURE
 } from './actions'
 
 // Product list
@@ -50,6 +53,45 @@ export const products = (state = productsInitialState, action) => {
 
     case PRODUCTS_GET_LIST_RESET:
       return Object.assign({}, productsInitialState)
+
+    default:
+      return state
+  }
+}
+
+// Survey Products
+
+const surveyProductsInitialState = {
+  isLoading: false,
+  error: null,
+  gender: null,
+  list: []
+}
+
+export const surveyProducts = (state = surveyProductsInitialState, action) => {
+  switch (action.type) {
+    case PRODUCTS_SURVEY_GET_BY_GENDER_REQUEST:
+      return {
+        ...state,
+        isLoading: action.isLoading,
+        error: null,
+        gender: action.gender
+      }
+
+    case PRODUCTS_SURVEY_GET_BY_GENDER_RESPONSE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error,
+        list: action.list
+      }
+
+    case PRODUCTS_SURVEY_GET_BY_GENDER_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error
+      }
 
     default:
       return state
