@@ -17,7 +17,6 @@ import userRoutes from '../../setup/routes/user'
 import { messageShow, messageHide } from '../common/api/actions'
 import { create } from '../subscription/api/actions'
 import { getById } from './api/actions'
-import { getSurveyList } from '../product/api/actions'
 
 // Component
 class Item extends PureComponent {
@@ -32,7 +31,7 @@ class Item extends PureComponent {
   }
 
   checkUserStyle = (crateId) => {
-    if (!this.props.user.details.style_preference) {
+    if (this.props.user.details) {
       this.onClickSubscribe(crateId)
       this.props.history.push(userRoutes.survey.path)
     } else {

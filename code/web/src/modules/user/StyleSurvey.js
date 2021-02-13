@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 // UI Imports
 import { Grid, GridCell } from '../../ui/grid'
@@ -181,8 +181,18 @@ class StyleSurvey extends Component {
       </section>
     )
   }
+}
 
-
+StyleSurvey.propTypes = {
+  user: PropTypes.object.isRequired,
+  surveyProducts: PropTypes.array.isRequired,
+  subscriptions: PropTypes.array.isRequired,
+  getList: PropTypes.func.isRequired,
+  getSurveyList: PropTypes.func.isRequired,
+  setUserStyle: PropTypes.func.isRequired,
+  create: PropTypes.func.isRequired,
+  messageShow: PropTypes.func.isRequired,
+  messageHide: PropTypes.func.isRequired
 }
 
 function styleSurveyState(state) {
@@ -192,4 +202,4 @@ function styleSurveyState(state) {
     subscriptions: state.subscriptions
   }
 }
-export default connect(styleSurveyState, { getList, create, messageShow, messageHide, getSurveyList, setUserStyle, login })(withRouter(StyleSurvey))
+export default connect(styleSurveyState, { getList, create, messageShow, messageHide, getSurveyList, setUserStyle })(withRouter(StyleSurvey))
