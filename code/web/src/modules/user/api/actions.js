@@ -79,9 +79,6 @@ export function loginSetUserLocalStorageAndCookie(token, user) {
 
 // Set user style preference
 export function setUserStyle(user, newStyle, isLoading = true) {
-  user.details['style_preference'] = newStyle
-  // return { type: SET_STYLE, user }
-  console.log(user)
   return dispatch => {
     dispatch({
       type: SET_STYLE,
