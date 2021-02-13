@@ -23,7 +23,7 @@ export const user = {
 // Auth
 export const userLogin = {
   type: UserLoginType,
-  args: {
+  args: { 
     id: {
       name: 'id',
       type: GraphQLInt
